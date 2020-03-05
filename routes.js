@@ -13,8 +13,14 @@ module.exports = (app, allModels) => {
    */
 
   // require the controller
-  const pokemonControllerCallbacks = require('./controllers/pokemon')(allModels);
+  const controllerCallbacks = require('./controllers/project')(allModels);
 
-  app.get('/pokemons', pokemonControllerCallbacks.index);
+
+
+  app.get('/register', controllerCallbacks.showRegisterPage);
+  app.get('/login', controllerCallbacks.showLoginPage);
+  app.post('/register', controllerCallbacks.registerUser);
+  app.post('/login', controllerCallbacks.loginUser);
+  
   //app.get('/pokemons/:id', pokemons.getPokemon);
 };

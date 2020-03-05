@@ -1,5 +1,6 @@
 const {resolve} = require('path');
 const express = require('express');
+const cookieParser = require('cookie-parser');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -10,6 +11,10 @@ const db = require('./db');
 const app = express();
 
 // Set up middleware
+app.use(cookieParser());
+
+app.use(express.static('public'));
+
 app.use(express.json());
 
 app.use(express.urlencoded({
