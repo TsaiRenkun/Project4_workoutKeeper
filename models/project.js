@@ -62,9 +62,22 @@ module.exports = (Pool) => {
     })
 }
 
+  const findBodyPart = (callback) => {
+    let query = 'SELECT * from bodypart';
+
+    Pool.query(query,(err,res)=>{
+      if(err){
+        callback(err,null)
+      } else {
+        callback(null,res)
+      }
+    })
+  }
+
   return {
     newUser,
     verifyUser,
     findUser,
+    findBodyPart,
   };
 };

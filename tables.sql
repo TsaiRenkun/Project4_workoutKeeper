@@ -12,11 +12,11 @@ UNIQUE (name)
 -- workout_id integer
 -- );
 
--- Create table if not exists bodypart(
---  Id serial primary key,
--- name text,
--- UNIQUE (name)
--- );
+Create table if not exists bodypart(
+ Id serial primary key,
+name text,
+UNIQUE (name)
+);
 
 -- Create table if not exists workout(
 --  Id serial primary key,
@@ -35,10 +35,9 @@ UNIQUE (name)
 -- UNIQUE (workout_id, exercise_id,user_id)
 -- );
 
--- Create table if not exists exercise(
---  Id serial primary key,
--- name text,
--- instructions text,
--- bodypart_id integer
--- );
+Create table if not exists exercise(
+ Id serial primary key,
+name text,
+bodypart_id integer
+);
 

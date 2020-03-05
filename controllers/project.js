@@ -54,6 +54,20 @@ module.exports = (db) => {
     })
   }
 
+  let getBodyPart = (request,response) => {
+    console.log("HELLEAWEWLEAE")
+    db.key.findBodyPart((err,results)=>{
+      response.send(results.rows)
+    })
+  }
+
+  let logOut = (req, res) => {
+    res.clearCookie("loggedIn");
+    res.clearCookie("userId");
+    res.redirect('/');
+};
+
+
   /**
    * ===========================================
    * Export controller functions as a module
@@ -64,6 +78,7 @@ module.exports = (db) => {
     showRegisterPage,
     registerUser,
     loginUser,
+    getBodyPart,
   };
 
 }
