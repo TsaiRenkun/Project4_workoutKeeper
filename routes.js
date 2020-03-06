@@ -24,13 +24,14 @@ module.exports = (app, allModels) => {
   app.get('/logout', controllerCallbacks.logOut);
 
   app.get('/bodyparts',controllerCallbacks.getBodyPart);
+  app.get('/bodyparts/:id',controllerCallbacks.getExercise);
 
+  app.get('/exercises/:id', controllerCallbacks.getSingleExercise);
 
   app.get('/arms')
   app.get('/chest')
   app.get('/back')
   app.get('/legs')
   app.get('/arms')
-  
-  //app.get('/pokemons/:id', pokemons.getPokemon);
+ 
 };

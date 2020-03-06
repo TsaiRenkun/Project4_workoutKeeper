@@ -11,7 +11,7 @@ class BodyPart extends React.Component {
       } 
     }
 
-    componentDidMount(){
+  componentDidMount(){
       console.log("Done rendering stuff")
       this.getAllBodyPart()
     }
@@ -29,16 +29,33 @@ class BodyPart extends React.Component {
     })
   }
 
+  showExercises(key){
+    const url = '/bodyparts/' + key;
+    console.log(url)
+    console.log("ASHJKKJWHDSDHKJASDHSAKJDHSDKSAJHDKASDHKDKAHDKJSA")
+      axios.get(url)
+        .then((response) => {
+          
+          const data = response.data
+          console.log(data)
+          this.props.exerciseCallback(data)
+    
+        }).catch((error)=>{
+          console.log(error);
+        })
+  }
+
   render() {
 
       let bodypart = this.state.bodyparts
 
       const bodyArray = this.state.bodyparts.map((body,index)=>{
-        return (<div key = {index}>
-            <p>id: {body.id} || name: {body.name} 
-            <button key={body.id} onClick ={()=>{}}>Show</button>
-            </p>
-            </div>)
+        return (
+            <div key = {index}>
+            <p>id: {body.id} || name: {body.name} </p>
+            <button key={body.id} onClick ={()=>{this.showExercises(body.id)}}>Show</button>
+            </div>
+            )
     })
 
     return (

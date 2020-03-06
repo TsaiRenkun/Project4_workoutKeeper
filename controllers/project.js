@@ -8,15 +8,15 @@ module.exports = (db) => {
    * ===========================================
    */
 
-  let showRegisterPage = (request, response) => {
+  const showRegisterPage = (request, response) => {
         response.render('users/register');
   };
 
-  let showLoginPage = (request, response) => {
+  const showLoginPage = (request, response) => {
     response.render('users/login');
 };
 
-  let registerUser = (request,response) => {
+  const registerUser = (request,response) => {
     let data = {
         username: request.body.username,
         password: request.body.password,
@@ -29,7 +29,7 @@ module.exports = (db) => {
     })
   }
 
-  let loginUser = (request,response)=> {
+  const loginUser = (request,response)=> {
 
     console.log(request.body.username)
 
@@ -54,18 +54,44 @@ module.exports = (db) => {
     })
   }
 
-  let getBodyPart = (request,response) => {
-    console.log("HELLEAWEWLEAE")
+  const getBodyPart = (request,response) => {
     db.key.findBodyPart((err,results)=>{
       response.send(results.rows)
     })
   }
 
-  let logOut = (req, res) => {
+  const getExercise = (request,response) => {
+
+    console.log("getting different Exercises");
+
+    let data = {
+      keyId: request.params.id
+    }
+
+    db.key.findExercise(data, (err,results)=>{
+      response.send(results.rows)
+      console.log(results.rows, "Returning the first set of things")
+    })
+
+  }
+
+  const getSingleExercise = (request,response) => {
+    console.log( "DATADATA DATADADADAD")
+
+    let data = {
+      keyId: request.params.id
+    }
+    
+    db.key.findSingleExercise(data,(err,results)=>{
+      response.send(results.rows[0])
+    })
+  }
+
+  const logOut = (req, res) => {
     res.clearCookie("loggedIn");
     res.clearCookie("userId");
     res.redirect('/');
-};
+  };
 
 
   /**
@@ -79,6 +105,9 @@ module.exports = (db) => {
     registerUser,
     loginUser,
     getBodyPart,
+    logOut,
+    getExercise,
+    getSingleExercise,
   };
 
 }

@@ -5,20 +5,22 @@ import axios from "axios";
 class Nav extends React.Component {
   render() {
 
-    const cookie = this.props.cookies;
-
-    const checkcookie = (index) => {
-        if(index){
-            <button
+    const cookie = this.props.cookiesCheck;
+    const checkCookie = (index) => {
+        console.log(index)
+        if(index.userId){
+         return(  <a href ="/logOut"><button
+         className="btn btn-outline-success my-2 my-sm-0"
+       >LogOut</button></a>
+         )
+        } else {
+          return( <a href ="/login"><button
               className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-              href="/logout"
-            ></button>
+            >Login</button></a>
+          )
         }
       }
 
-    
-        }
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="#">
@@ -40,7 +42,7 @@ class Nav extends React.Component {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <a className="nav-link" href="#">
-                Home <span class="sr-only">(current)</span>
+                Home <span className="sr-only">(current)</span>
               </a>
             </li>
             <li className="nav-item">
@@ -81,13 +83,9 @@ class Nav extends React.Component {
               placeholder="Search"
               aria-label="Search"
             />
-            <button
-              className="btn btn-outline-success my-2 my-sm-0"
-              type="submit"
-            >
-              Search
-            </button>
-          </form>
+            </form>
+
+            {checkCookie(cookie)}
         </div>
       </nav>
     );
