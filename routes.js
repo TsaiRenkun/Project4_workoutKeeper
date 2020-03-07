@@ -28,6 +28,16 @@ module.exports = (app, allModels) => {
 
   app.get('/exercises/:id', controllerCallbacks.getSingleExercise);
 
+  app.post('/workout', controllerCallbacks.createWorkout);
+  
+  app.post('/workout/:id', controllerCallbacks.addExercise);
+  app.get('/workoutlist/:id', controllerCallbacks.showWorkoutList);
+  app.put('/workoutlist/:id/update', controllerCallbacks.UpdateWorkout);
+  app.get('/workoutlist/:id/:user_id', controllerCallbacks.showSingleWorkout);
+  app.put('/workoutlist/:id/:user_id', controllerCallbacks.updateWorkout);
+
+  app.get('user/')
+
   app.get('/arms')
   app.get('/chest')
   app.get('/back')

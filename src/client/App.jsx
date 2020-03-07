@@ -5,6 +5,7 @@ import BodyPart from './bodypart.jsx'
 import Nav from './Nav.jsx';
 import Exercise from './exercise.jsx';
 import Workout from './workout.jsx';
+import Workoutlist from './workoutlist.jsx'
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -31,8 +32,7 @@ class App extends React.Component {
     if(cookies){
     this.setState({cookie: cookies.cookies})
     }
-  }
-  
+  }  
   render() {
 
     const myCallback = (exercises)=>{
@@ -46,6 +46,11 @@ class App extends React.Component {
     const removeFromWorkout = (index) => {
       let array = this.state.workout
       array.splice(index, 1)
+      this.setState({workout : array})
+    }
+
+    const clearWorkout = () => {
+      let array = []
       this.setState({workout : array})
     }
 
@@ -66,9 +71,12 @@ class App extends React.Component {
               </div>
             <div class="col-sm">
                 <h2>Workout</h2>
-                <Workout workList ={this.state.workout} removeExercise = {removeFromWorkout}/>
+                <Workout workList ={this.state.workout} removeExercise = {removeFromWorkout} cookieId = {this.state.cookie} clear = {clearWorkout}/>
               </div>
           </div>
+      </div>
+      <div>
+          <Workoutlist cookieId = {this.state.cookie}/>
       </div>
     </div>
     );

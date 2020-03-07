@@ -103,7 +103,59 @@ module.exports = (Pool) => {
           callback(null,res)
       }
     })
+  }
 
+  const postWorkout = (data , callback)=>{
+    let values = [data.userId];
+    let query = "INSERT into workout (user_id) VALUES ($1) RETURNING *"
+    
+    Pool.query(query,values,(err,res)=>{
+      if(err){
+          callback(err,null)
+      } else {
+          callback(null,res)
+      }
+    })
+  }
+
+  const insertExercises = (data, callback)=>{
+    let values = [data.workoutId, data.exerciseId, data.userId]
+    let query = "INSERT into exercise_workout (workout_id, exercise_id, user_id) VALUES ($1, $2, $3) RETURNING *"
+
+    Pool.query(query,values,(err,res)=>{
+      if(err){
+          callback(err,null)
+      } else {
+          callback(null,res)
+      }
+    })
+  }
+
+  const getWorkoutList = (data,callback) => {
+    let values = [data.userId]
+    let query = "SELECT workout.id, workout.user_id from workout INNER JOIN users ON (workout.user_id = users.id) WHERE users.id = $1";
+    Pool.query(query,values,(err,res)=>{
+      if(err){
+          callback(err,null)
+      } else {
+          callback(null,res)
+      }
+    })
+  }
+
+  const getExerciseinWorkout = (data, callback) => {
+    let values = [data.workoutId, data.userId]
+    let query = "SELECT * from exercise_workout INNER JOIN workout ON(exercise_workout.workout_id = workout.id) INNER JOIN exercise ON(exercise_workout.exercise_id = exercise.id) WHERE (workout.id = $1 AND exercise_workout.user_id = $2)";
+
+    Pool.query(query,values,(err,res)=>{
+      if(err){
+          console.log(err)
+          callback(err,null)
+      } else {
+          console.log(res)
+          callback(null,res)
+      }
+    })
   }
 
   return {
@@ -113,5 +165,9 @@ module.exports = (Pool) => {
     findBodyPart,
     findExercise,
     findSingleExercise,
+    postWorkout,
+    insertExercises,
+    getWorkoutList,
+    getExerciseinWorkout,
   };
 };

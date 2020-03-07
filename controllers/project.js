@@ -61,23 +61,17 @@ module.exports = (db) => {
   }
 
   const getExercise = (request,response) => {
-
-    console.log("getting different Exercises");
-
     let data = {
       keyId: request.params.id
     }
 
     db.key.findExercise(data, (err,results)=>{
       response.send(results.rows)
-      console.log(results.rows, "Returning the first set of things")
     })
 
   }
 
   const getSingleExercise = (request,response) => {
-    console.log( "DATADATA DATADADADAD")
-
     let data = {
       keyId: request.params.id
     }
@@ -87,11 +81,77 @@ module.exports = (db) => {
     })
   }
 
+
+  const createWorkout = (request,response) => {
+    let data = {
+      userId: request.body.userId
+    }
+    console.log("YOU ARE INSIDE WORKOUY")
+    console.log(data)
+
+    db.key.postWorkout(data, (err,results)=>{
+      response.send(results)
+    })
+  }
+
+  const addExercise = (request,response)=>{
+    let data = {
+      workoutId: request.params.id,
+      exerciseId: request.body.exerciseId,
+      userId: request.body.userId
+    }
+    
+    console.log("YOU ARE INSIDE ADDDING STUFF IN WORKO OYUOUADFBJHSADSAYGSDGGUYSJADJASDGYDSADSADSGYJDAS")
+    console.log(data)
+
+    db.key.insertExercises(data, (err,results)=>{
+      response.send(results)
+    })
+  }
+
+  const showWorkoutList = (request,response)=>{
+
+    let data = {
+      userId: request.params.id,
+    }
+
+    console.log("INSDIE SHOWING WORKOUT LIST AND STUFF SO FK YOU UNDERSTNS S", data)
+
+    db.key.getWorkoutList(data, (err,results)=>{
+      response.send(results)
+    })
+  }
+
+  const showSingleWorkout = (request,response)=>{
+
+    let data = {
+      userId: request.params.user_id,
+      workoutId: request.params.id
+    }
+    console.log("WE ARE HERE INSDE EACH WORKOJUT ONEO ON EOENOENOENOE " , data)
+    db.key.getExerciseinWorkout(data, (err,results)=>{
+      console.log("showing stuff")
+      response.send(results)
+    })
+  }
+
+  const updateWorkout = (request,response) => {
+    let data = {
+      userId: request.params.user_id,
+      workoutId: request.params.id
+    }
+    db.key.markAsCompleted(data, (err,results)=>{
+      response.send(results)
+    }
+  }
+
   const logOut = (req, res) => {
     res.clearCookie("loggedIn");
     res.clearCookie("userId");
     res.redirect('/');
   };
+
+  
 
 
   /**
@@ -108,6 +168,10 @@ module.exports = (db) => {
     logOut,
     getExercise,
     getSingleExercise,
+    createWorkout,
+    addExercise,
+    showWorkoutList,
+    showSingleWorkout,
   };
 
 }
