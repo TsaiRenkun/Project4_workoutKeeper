@@ -128,21 +128,24 @@ module.exports = (db) => {
       userId: request.params.user_id,
       workoutId: request.params.id
     }
+    
     console.log("WE ARE HERE INSDE EACH WORKOJUT ONEO ON EOENOENOENOE " , data)
     db.key.getExerciseinWorkout(data, (err,results)=>{
-      console.log("showing stuff")
       response.send(results)
     })
   }
 
   const updateWorkout = (request,response) => {
+
     let data = {
-      userId: request.params.user_id,
-      workoutId: request.params.id
+      userId: request.body.user_id,
+      workoutId: request.body.id
     }
+
+    console.log(data , "UPDAREING COMPLETED")
     db.key.markAsCompleted(data, (err,results)=>{
-      response.send(results)
-    }
+      response.send(results.rows)
+    })
   }
 
   const logOut = (req, res) => {
@@ -172,6 +175,7 @@ module.exports = (db) => {
     addExercise,
     showWorkoutList,
     showSingleWorkout,
+    updateWorkout,
   };
 
 }

@@ -158,6 +158,21 @@ module.exports = (Pool) => {
     })
   }
 
+  const markAsCompleted = (data, callback) => {
+    let values = [data.workoutId, data.userId]
+    let query = "UPDATE workout SET completed= 'true' WHERE id= $1 AND user_id = $2 RETURNING *";
+
+    Pool.query(query,values,(err,res)=>{
+      if(err){
+          console.log(err)
+          callback(err,null)
+      } else {
+          console.log(res)
+          callback(null,res)
+      }
+    })
+  }
+
   return {
     newUser,
     verifyUser,
@@ -169,5 +184,6 @@ module.exports = (Pool) => {
     insertExercises,
     getWorkoutList,
     getExerciseinWorkout,
+    markAsCompleted,
   };
 };

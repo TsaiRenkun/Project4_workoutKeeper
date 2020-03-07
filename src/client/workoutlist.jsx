@@ -31,9 +31,6 @@ class Workoutlist extends React.Component {
 
   getSingleWorkout(user,workout){
     const url = "/workoutlist/" + workout + "/" + user ;
-    axios.post('/workoutlist/' + workout + '/update', {
-        userId: key
-      })
     axios
       .get(url)
       .then(response => {
@@ -48,24 +45,23 @@ class Workoutlist extends React.Component {
       });
   }
 
-  markAsCompleted(key){
-  const url = "/workoutlist/" + workout + "/update" ;
-  axios
-    .get(url)
-    .then(response => {
-      console.log("UPDATE WORKOUT STUFF HAHAHAHHA");
-        console.log(response)
-      const data = response.data;
-      console.log(data);
-      this.setState({ exercises: data.rows });
-    })
-    .catch(error => {
-      console.log(error);
-    });
+  markAsCompleted(user,workout){
+  const url = "/workoutlist/" + workout + "/" + user ;
+  axios.put(url, {
+    user_id: user,
+    id: workout
+  })
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 }
 
   render() {
     const cookie = this.props.cookieId.userId;
+
     const exerciseslist = this.state.exercises.map((exercise)=>{
         return(
             <div>
@@ -73,27 +69,28 @@ class Workoutlist extends React.Component {
             </div>
         )
     })
-    const workoutItems = this.state.workoutList.map(workout => {
+
+    const workoutItems = this.state.workoutList.map((workout,index) => {
+        let targeturl = "exampleModalCenter" + workout.id;
+        let targetting = "#exampleModalCenter" + workout.id;
       return (
-        <div class="card" style={{ width: "18rem" }}>
+        <div key= {index} class="card" style={{ width: "18rem" }}>
           <div class="card-body">
             <h5 class="card-title">{workout.id}</h5>
-            <button key={workout.id} onClick={() => {}}>
-              view to Workout
-            </button>
             <button
               type="button"
               class="btn btn-primary"
               data-toggle="modal"
-              data-target="#exampleModalCenter"
+              data-target={targetting}
               onClick={() => {this.getSingleWorkout(cookie,workout.id)}}
             >
               Show workout
             </button>
+            
             <div
               class="modal fade"
-              id="exampleModalCenter"
-              tabindex="-1"
+              id={targeturl}
+              tabIndex="index"
               role="dialog"
               aria-labelledby="exampleModalCenterTitle"
               aria-hidden="true"
@@ -124,8 +121,8 @@ class Workoutlist extends React.Component {
                     >
                       Close
                     </button>
-                    <button type="button" class="btn btn-primary">
-                      Save changes
+                    <button key ={workout.id} type="button" class="btn btn-primary" onClick={() => {this.markAsCompleted(cookie , workout.id)}}>
+                      Mark Done
                     </button>
                   </div>
                 </div>
