@@ -31,9 +31,11 @@ module.exports = (app, allModels) => {
   app.post('/workout', controllerCallbacks.createWorkout);
   
   app.post('/workout/:id', controllerCallbacks.addExercise);
+  
   app.get('/workoutlist/:id', controllerCallbacks.showWorkoutList);
   app.get('/workoutlist/:id/:user_id', controllerCallbacks.showSingleWorkout);
   app.put('/workoutlist/:id/:user_id', controllerCallbacks.updateWorkout);
+  
 
   app.get('user/')
 

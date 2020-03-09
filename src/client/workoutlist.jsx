@@ -2,31 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import moment from "moment";
+import Workout from './workout.jsx';
 
 class Workoutlist extends React.Component {
   constructor() {
     console.log("constructing");
     super();
     this.state = {
-      workoutList: [],
       exercises: []
     };
   }
-
-  getAllWorkout(key) {
-    const url = "/workoutlist/" + key;
-    axios
-      .get(url)
-      .then(response => {
-        console.log("WE ARE FKING IN thE WORK OUT LIST MOSTHER FKER");
-        //   console.log(response)
-        const data = response.data;
-        console.log(data.rows);
-        this.setState({ workoutList: data.rows });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  componentDidMount(){
+    console.log("Done rendering stuff")
   }
 
   getSingleWorkout(user,workout){
@@ -59,8 +47,23 @@ class Workoutlist extends React.Component {
   });
 }
 
+  markAsMissed(user,workout){
+    const url = "/workoutlist/" + workout + "/" + user + "/miss" ;
+    axios.put(url, {
+      user_id: user,
+      id: workout
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   render() {
-    const cookie = this.props.cookieId.userId;
+
+    const cookie = this.props.cookieId;
 
     const exerciseslist = this.state.exercises.map((exercise)=>{
         return(
@@ -70,12 +73,18 @@ class Workoutlist extends React.Component {
         )
     })
 
-    const workoutItems = this.state.workoutList.map((workout,index) => {
+    const workoutItems = this.props.workoutList.map((workout,index) => {
+    if(workout.completed === null && moment(Date.now()).isBefore(moment(workout.expire_at))){
         let targeturl = "exampleModalCenter" + workout.id;
         let targetting = "#exampleModalCenter" + workout.id;
+        let expiredate = moment(workout.expire_at).format('MMMM D, YYYY')
+        let daysleft = (moment(workout.expire_at)).diff(moment(workout.created_at), 'days')
+
       return (
         <div key= {index} class="card" style={{ width: "18rem" }}>
           <div class="card-body">
+            <p>Expires on : {expiredate}</p>
+            <p>days left : {daysleft}</p>
             <h5 class="card-title">{workout.id}</h5>
             <button
               type="button"
@@ -86,6 +95,7 @@ class Workoutlist extends React.Component {
             >
               Show workout
             </button>
+    
             
             <div
               class="modal fade"
@@ -131,18 +141,11 @@ class Workoutlist extends React.Component {
           </div>
         </div>
       );
-    });
-
+    }
+});
     return (
       <div>
-        HELLLOOO
-        <button
-          onClick={() => {
-            this.getAllWorkout(cookie);
-          }}
-        >
-          view to Workout
-        </button>
+        HELLLOO
         {workoutItems}
       </div>
     );

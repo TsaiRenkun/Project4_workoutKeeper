@@ -21,7 +21,10 @@ UNIQUE (name)
 Create table if not exists workout(
  Id serial primary key,
 user_id integer,
-completed boolean
+completed boolean,
+missed boolean,
+created_at TIMESTAMP DEFAULT CURRENT_DATE,
+expire_at TIMESTAMP DEFAULT CURRENT_DATE + 7
 );
 
 Create table if not exists exercise_workout(

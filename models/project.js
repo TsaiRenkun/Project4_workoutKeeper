@@ -133,7 +133,7 @@ module.exports = (Pool) => {
 
   const getWorkoutList = (data,callback) => {
     let values = [data.userId]
-    let query = "SELECT workout.id, workout.user_id from workout INNER JOIN users ON (workout.user_id = users.id) WHERE users.id = $1";
+    let query = "SELECT workout.id, workout.user_id, workout.completed, workout.missed , workout.expire_at, workout.created_at from workout INNER JOIN users ON (workout.user_id = users.id) WHERE users.id = $1";
     Pool.query(query,values,(err,res)=>{
       if(err){
           callback(err,null)
@@ -158,9 +158,9 @@ module.exports = (Pool) => {
     })
   }
 
-  const markAsCompleted = (data, callback) => {
+  const getSingleWorkout = (data, callback) => {
     let values = [data.workoutId, data.userId]
-    let query = "UPDATE workout SET completed= 'true' WHERE id= $1 AND user_id = $2 RETURNING *";
+    let query = "SELECT * FROM workout WHERE id= $1 AND user_id = $2";
 
     Pool.query(query,values,(err,res)=>{
       if(err){
@@ -172,6 +172,30 @@ module.exports = (Pool) => {
       }
     })
   }
+
+
+  const markAsCompleted = (data, callback) => {
+    let values = [data.workoutId, data.userId]
+    let query = "UPDATE workout SET completed = 'true' WHERE id= $1 AND user_id = $2 RETURNING *";
+
+    Pool.query(query,values,(err,res)=>{
+      if(err){
+          console.log(err)
+          callback(err,null)
+      } else {
+          console.log(res)
+          callback(null,res)
+      }
+    })
+  }
+
+  const markAsMissed = (data, callback) => {
+    getSingleWorkout(data, (err,results)=>{
+      console.log(results.data.rows)
+    })
+  }
+
+
 
   return {
     newUser,
@@ -185,5 +209,7 @@ module.exports = (Pool) => {
     getWorkoutList,
     getExerciseinWorkout,
     markAsCompleted,
+    markAsMissed,
+    getSingleWorkout,
   };
 };

@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
+import Workoutlist from './workoutlist.jsx'
 
 
 class Workout extends React.Component {
 
-    createWorkout(key,data,clearlist){
+    createWorkout(key,data,clearlist,addingstuff){
         console.log("YOU ARE CREATE ASIOSSOXOCSOXOS  WORKOUY")
         console.log(key)
         axios.post('/workout', {
@@ -13,6 +14,8 @@ class Workout extends React.Component {
           })
           .then(function (response) {
               console.log("LOADINg MORE StuUFF")
+              console.log(response.data.rows[0], "CREATE WORKOUT ")
+              addingstuff(response.data.rows[0])
               console.log(data, "THIS IS LIST OF THINGS SO FK YOU")
             data.map((exercise)=>{
                 axios.post('/workout/' + response.data.rows[0].id, {
@@ -52,7 +55,7 @@ class Workout extends React.Component {
             HELLO
             {exercises}
             
-            <button type="Submit"  onClick ={()=>{this.createWorkout(this.props.cookieId.userId, this.props.workList, this.props.clear)}}>Submit</button>
+            <button type="Submit"  onClick ={()=>{this.createWorkout(this.props.cookieId.userId, this.props.workList, this.props.clear, this.props.addingWorkoutList)}}>Submit</button>
         </div>
         )
     }

@@ -128,7 +128,7 @@ module.exports = (db) => {
       userId: request.params.user_id,
       workoutId: request.params.id
     }
-    
+
     console.log("WE ARE HERE INSDE EACH WORKOJUT ONEO ON EOENOENOENOE " , data)
     db.key.getExerciseinWorkout(data, (err,results)=>{
       response.send(results)
@@ -146,6 +146,18 @@ module.exports = (db) => {
     db.key.markAsCompleted(data, (err,results)=>{
       response.send(results.rows)
     })
+  }
+
+  const missExercise = (request,response) => {
+
+    let data = {
+      userId: request.body.user_id
+    }
+
+    db.key.markAsMissed(data, (err,results)=>{
+      response.send(results.rows)
+    }) 
+
   }
 
   const logOut = (req, res) => {
@@ -176,6 +188,7 @@ module.exports = (db) => {
     showWorkoutList,
     showSingleWorkout,
     updateWorkout,
+    missExercise,
   };
 
 }

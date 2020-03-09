@@ -8,6 +8,7 @@ import Workout from './workout.jsx';
 import Workoutlist from './workoutlist.jsx'
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import moment from "moment";
 
 class App extends React.Component {
 
@@ -17,22 +18,39 @@ class App extends React.Component {
     this.state = {
       cookie: "",
       exercise :[],
-      workout: []
+      workout: [],
+      workoutList: [],
       } 
     }
 
     componentDidMount(){
       console.log("Done rendering stuff")
-      this.getCookie()
+      const cookies = new Cookies();
+      cookies.get();
+      if(cookies){
+      this.setState({cookie: cookies.cookies})
+      console.log(cookies.cookies.userId)
+      this.getAllWorkout(cookies.cookies.userId)
+      }
     }
 
-  getCookie(){
-    const cookies = new Cookies();
-    cookies.get('');
-    if(cookies){
-    this.setState({cookie: cookies.cookies})
+    getAllWorkout(key) {
+      const url = "/workoutlist/" + key;
+      console.log(url)
+      axios
+        .get(url)
+        .then(response => {
+          console.log("WE ARE FKING IN thE WORK OUT LIST MOSTHER FKER");
+            console.log(response)
+          const data = response.data;
+          console.log(data.rows);
+          this.setState({ workoutList: data.rows });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
-  }  
+
   render() {
 
     const myCallback = (exercises)=>{
@@ -54,6 +72,19 @@ class App extends React.Component {
       this.setState({workout : array})
     }
 
+    const getCookie = () => {
+      const cookies = new Cookies();
+      cookies.get('');
+      if(cookies){
+        return cookies.cookies.userId
+      }
+    }
+
+    const addWorkout = (workout) => {
+      this.setState({workoutList: [workout, ...this.state.workoutList]})
+      console.log(this.state.workoutList , "STATE STATE STATE")
+    }
+
     return (
       <div>
         <div>
@@ -71,12 +102,12 @@ class App extends React.Component {
               </div>
             <div class="col-sm">
                 <h2>Workout</h2>
-                <Workout workList ={this.state.workout} removeExercise = {removeFromWorkout} cookieId = {this.state.cookie} clear = {clearWorkout}/>
+                <Workout workList ={this.state.workout} removeExercise = {removeFromWorkout} cookieId = {this.state.cookie} clear = {clearWorkout} addingWorkoutList = {addWorkout}/>
               </div>
           </div>
       </div>
       <div>
-          <Workoutlist cookieId = {this.state.cookie}/>
+          <Workoutlist cookieId = {getCookie()} workoutList = {this.state.workoutList} />
       </div>
     </div>
     );
