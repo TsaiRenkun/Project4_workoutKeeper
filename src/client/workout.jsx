@@ -2,21 +2,19 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import Workoutlist from './workoutlist.jsx'
-
+import CloseIcon from '@material-ui/icons/Close';
 
 class Workout extends React.Component {
 
-    createWorkout(key,data,clearlist,addingstuff){
-        console.log("YOU ARE CREATE ASIOSSOXOCSOXOS  WORKOUY")
+    createWorkout(key,data,clearlist){
         console.log(key)
         axios.post('/workout', {
             userId: key
           })
           .then(function (response) {
-              console.log("LOADINg MORE StuUFF")
-              console.log(response.data.rows[0], "CREATE WORKOUT ")
-              addingstuff(response.data.rows[0])
-              console.log(data, "THIS IS LIST OF THINGS SO FK YOU")
+              console.log(response.data.rows[0])
+              console.log(data)
+              
             data.map((exercise)=>{
                 axios.post('/workout/' + response.data.rows[0].id, {
                     exerciseId: exercise.id,
@@ -41,12 +39,9 @@ class Workout extends React.Component {
 
         let exercises = this.props.workList.map((exercise,index)=>{
             return (
-                <div class="card" style={{width: "18rem"}}>
-                <div class="card-body">
-                <h5 class="card-title">{exercise.name}</h5>
-                <button key={index} onClick ={()=>{this.props.removeExercise({index})}}>Remove</button>
+                <div>
+                <h5 class="card-title">{exercise.name}<CloseIcon key={index} onClick ={()=>{this.props.removeExercise({index})}}>Remove</CloseIcon></h5>
                 </div>
-            </div>
             )
         })
 
@@ -54,8 +49,7 @@ class Workout extends React.Component {
         <div>
             HELLO
             {exercises}
-            
-            <button type="Submit"  onClick ={()=>{this.createWorkout(this.props.cookieId.userId, this.props.workList, this.props.clear, this.props.addingWorkoutList)}}>Submit</button>
+            <button type="Submit"  onClick ={()=>{this.createWorkout(this.props.cookieId.userId, this.props.workList, this.props.clear)}}>Submit</button>
         </div>
         )
     }

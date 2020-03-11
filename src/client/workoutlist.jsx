@@ -4,6 +4,8 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import moment from "moment";
 import Workout from './workout.jsx';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 
 class Workoutlist extends React.Component {
   constructor() {
@@ -12,9 +14,6 @@ class Workoutlist extends React.Component {
     this.state = {
       exercises: []
     };
-  }
-  componentDidMount(){
-    console.log("Done rendering stuff")
   }
 
   getSingleWorkout(user,workout){
@@ -33,7 +32,7 @@ class Workoutlist extends React.Component {
       });
   }
 
-  markAsCompleted(user,workout){
+  markAsCompleted(user,workout,removeWorkout,index){
   const url = "/workoutlist/" + workout + "/" + user ;
   axios.put(url, {
     user_id: user,
@@ -41,6 +40,8 @@ class Workoutlist extends React.Component {
   })
   .then(function (response) {
     console.log(response);
+
+    removeWorkout(index)
   })
   .catch(function (error) {
     console.log(error);
@@ -73,14 +74,15 @@ class Workoutlist extends React.Component {
         )
     })
 
-    const workoutItems = this.props.workoutList.map((workout,index) => {
+    let workoutItems = this.props.workoutList.map((workout,index) => {
     if(workout.completed === null && moment(Date.now()).isBefore(moment(workout.expire_at))){
         let targeturl = "exampleModalCenter" + workout.id;
         let targetting = "#exampleModalCenter" + workout.id;
         let expiredate = moment(workout.expire_at).format('MMMM D, YYYY')
-        let daysleft = (moment(workout.expire_at)).diff(moment(workout.created_at), 'days')
+        let daysleft = (moment(workout.expire_at)).diff(moment(Date.now()), 'days')
 
       return (
+        <Box p ={2}>
         <div key= {index} class="card" style={{ width: "18rem" }}>
           <div class="card-body">
             <p>Expires on : {expiredate}</p>
@@ -91,7 +93,7 @@ class Workoutlist extends React.Component {
               class="btn btn-primary"
               data-toggle="modal"
               data-target={targetting}
-              onClick={() => {this.getSingleWorkout(cookie,workout.id)}}
+              onClick={() => {this.getSingleWorkout(this.props.cookieId,workout.id)}}
             >
               Show workout
             </button>
@@ -131,7 +133,7 @@ class Workoutlist extends React.Component {
                     >
                       Close
                     </button>
-                    <button key ={workout.id} type="button" class="btn btn-primary" onClick={() => {this.markAsCompleted(cookie , workout.id)}}>
+                    <button key ={workout.id} type="button" class="btn btn-primary" onClick={() => {this.markAsCompleted(cookie , workout.id, this.props.removeWorkout, index)}}>
                       Mark Done
                     </button>
                   </div>
@@ -140,13 +142,20 @@ class Workoutlist extends React.Component {
             </div>
           </div>
         </div>
+        </Box>
       );
     }
 });
+
     return (
       <div>
-        HELLLOO
-        {workoutItems}
+        <Grid
+    container
+    direction="row"
+    justify="space-evenly"
+    alignItems="flex-start"
+    >{workoutItems}</Grid>
+        
       </div>
     );
   }

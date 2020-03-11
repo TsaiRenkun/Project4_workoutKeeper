@@ -100,7 +100,6 @@ module.exports = (db) => {
       exerciseId: request.body.exerciseId,
       userId: request.body.userId
     }
-    
     console.log("YOU ARE INSIDE ADDDING STUFF IN WORKO OYUOUADFBJHSADSAYGSDGGUYSJADJASDGYDSADSADSGYJDAS")
     console.log(data)
 
@@ -166,6 +165,30 @@ module.exports = (db) => {
     res.redirect('/');
   };
 
+  const getAllExercise = (request,response) =>{
+    db.key.AllExercise((err,results)=>{
+      response.send(results)
+    })
+  }
+
+  const getHistory = (request,response) => {
+
+    let data = {
+      userId: request.params.id
+    }
+
+    db.key.getAllHistoryCompleted(data, (err,results)=>{
+    
+      db.key.getAllHistoryMissed(data, (err,results1)=>{
+
+        const history = {
+          completed: results.rows,
+          missed: results1.rows
+        }
+      response.send(history)
+      }) 
+    }) 
+  }
   
 
 
@@ -189,6 +212,8 @@ module.exports = (db) => {
     showSingleWorkout,
     updateWorkout,
     missExercise,
+    getAllExercise,
+    getHistory,
   };
 
 }

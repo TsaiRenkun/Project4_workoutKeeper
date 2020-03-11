@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import axios from 'axios'
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+
 
 class BodyPart extends React.Component {
   constructor(){
@@ -51,9 +55,12 @@ class BodyPart extends React.Component {
 
       const bodyArray = this.state.bodyparts.map((body,index)=>{
         return (
-            <div key = {index}>
-            <p>id: {body.id} || name: {body.name} </p>
-            <button key={body.id} onClick ={()=>{this.showExercises(body.id)}}>Show</button>
+          <div key = {index} class="card" style={{width: "18rem"}}>
+            <Paper onClick ={()=>{this.showExercises(body.id)}}>
+            <div class="card-body">
+                    <h5 class="card-title">{body.name}<VisibilityIcon key={body.id}>Show</VisibilityIcon></h5>
+              </div>
+            </Paper>
             </div>
             )
     })

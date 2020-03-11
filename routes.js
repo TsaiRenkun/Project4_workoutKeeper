@@ -29,20 +29,17 @@ module.exports = (app, allModels) => {
   app.get('/exercises/:id', controllerCallbacks.getSingleExercise);
 
   app.post('/workout', controllerCallbacks.createWorkout);
-  
   app.post('/workout/:id', controllerCallbacks.addExercise);
   
   app.get('/workoutlist/:id', controllerCallbacks.showWorkoutList);
   app.get('/workoutlist/:id/:user_id', controllerCallbacks.showSingleWorkout);
   app.put('/workoutlist/:id/:user_id', controllerCallbacks.updateWorkout);
   
+  app.get('/history/:id', controllerCallbacks.getHistory)
+  app.get('/all', controllerCallbacks.getAllExercise);
+  app.get('/chest/2',controllerCallbacks.getExercise)
+  app.get('/back/4',controllerCallbacks.getExercise)
+  app.get('/legs/1',controllerCallbacks.getExercise)
 
-  app.get('user/')
-
-  app.get('/arms')
-  app.get('/chest')
-  app.get('/back')
-  app.get('/legs')
-  app.get('/arms')
  
 };
