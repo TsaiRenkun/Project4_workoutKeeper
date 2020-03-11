@@ -2,7 +2,6 @@ import React from 'react';
 import { hot } from 'react-hot-loader';
 import Cookies from 'universal-cookie';
 import BodyPart from './bodypart.jsx'
-import Nav from './Nav.jsx';
 import Exercise from './exercise.jsx';
 import Workout from './workout.jsx';
 import Workoutlist from './workoutlist.jsx'
