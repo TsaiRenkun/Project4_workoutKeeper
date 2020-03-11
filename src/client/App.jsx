@@ -11,7 +11,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import moment from "moment";
 import Drawertable from "./drawer.jsx";
 import Grid from '@material-ui/core/Grid';
-import History from './history.jsx'
+import History from './history.jsx';
+import Pie from './piechart.jsx';
+import Line from './linechart.jsx'
 
 class App extends React.Component {
 
@@ -178,7 +180,14 @@ class App extends React.Component {
               <Workoutlist cookieId = {getCookie()} workoutList = {this.state.workoutList} removeWorkout = {removeFromWorkoutList} />
           </div>
         )
-      }
+      } 
+    } else if (this.state.page === "Stats"){
+     content = (
+        <div>
+        <Pie completed = {this.state.historyCompleted} missed = {this.state.historyMissed}/>
+        <Line completed = {this.state.historyCompleted}/>
+      </div>
+     )
     }
 
     return (

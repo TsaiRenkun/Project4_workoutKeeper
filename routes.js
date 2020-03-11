@@ -35,6 +35,8 @@ module.exports = (app, allModels) => {
   app.get('/workoutlist/:id/:user_id', controllerCallbacks.showSingleWorkout);
   app.put('/workoutlist/:id/:user_id', controllerCallbacks.updateWorkout);
   
+
+  app.get('monthly/:id', controllerCallbacks.getMonthly)
   app.get('/history/:id', controllerCallbacks.getHistory)
   app.get('/all', controllerCallbacks.getAllExercise);
   app.get('/chest/2',controllerCallbacks.getExercise)

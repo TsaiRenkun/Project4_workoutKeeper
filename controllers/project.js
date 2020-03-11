@@ -162,7 +162,7 @@ module.exports = (db) => {
   const logOut = (req, res) => {
     res.clearCookie("loggedIn");
     res.clearCookie("userId");
-    res.redirect('/');
+    res.redirect('/login');
   };
 
   const getAllExercise = (request,response) =>{
@@ -189,6 +189,17 @@ module.exports = (db) => {
       }) 
     }) 
   }
+
+  const getMonthly = (request, response)=>{
+    let data = {
+      userId:request.params.id,
+      month: request.body.monthId
+    }
+
+    db.key.getMonthlyWorkout(data, (err, results)=>{
+      response.send(results)
+    })
+  }
   
 
 
@@ -214,6 +225,7 @@ module.exports = (db) => {
     missExercise,
     getAllExercise,
     getHistory,
+    getMonthly,
   };
 
 }

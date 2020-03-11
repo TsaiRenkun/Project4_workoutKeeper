@@ -145,7 +145,7 @@ module.exports = (Pool) => {
 
   const getWorkoutList = (data,callback) => {
     let values = [data.userId]
-    let query = "SELECT workout.id, workout.user_id, workout.completed, workout.expire_at, workout.created_at from workout INNER JOIN users ON (workout.user_id = users.id) WHERE users.id = $1";
+    let query = "SELECT workout.id, workout.user_id, workout.completed, workout.expire_at, workout.created_at,workout.updated_at from workout INNER JOIN users ON (workout.user_id = users.id) WHERE users.id = $1";
     Pool.query(query,values,(err,res)=>{
       if(err){
           callback(err,null)
@@ -236,6 +236,20 @@ module.exports = (Pool) => {
     })
   }
 
+  const getMonthlyWorkout = (data, callback) => {
+    let values = [data.userId, data.month]
+    let query = "SELECT * from workout WHERE workout.user_id = $1 AND workout.completed = null AND NOW() >= workout.expire_at";
+    Pool.query(query,values,(err,res)=>{
+      if(err){
+          console.log(err)
+          callback(err,null)
+      } else {
+          console.log(res)
+          callback(null,res)
+      }
+    })
+  }
+
 
   return {
     newUser,
@@ -254,5 +268,6 @@ module.exports = (Pool) => {
     AllExercise,
     getAllHistoryCompleted,
     getAllHistoryMissed,
+    getMonthlyWorkout,
   };
 };

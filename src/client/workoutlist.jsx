@@ -133,7 +133,9 @@ class Workoutlist extends React.Component {
                     >
                       Close
                     </button>
-                    <button key ={workout.id} type="button" class="btn btn-primary" onClick={() => {this.markAsCompleted(cookie , workout.id, this.props.removeWorkout, index)}}>
+                    <button type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal" key ={workout.id} type="button" class="btn btn-primary" onClick={() => {this.markAsCompleted(cookie , workout.id, this.props.removeWorkout, index)}}>
                       Mark Done
                     </button>
                   </div>
