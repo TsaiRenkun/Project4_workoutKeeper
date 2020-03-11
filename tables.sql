@@ -6,12 +6,6 @@ salt text,
 UNIQUE (name)
 );
 
--- Create table if not exists user_workout(
---  Id serial primary key,
--- user_id integer,
--- workout_id integer
--- );
-
 Create table if not exists bodypart(
  Id serial primary key,
 name text,

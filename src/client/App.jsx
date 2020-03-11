@@ -19,7 +19,7 @@ class App extends React.Component {
     console.log("constructing");
       super()
     this.state = {
-      page: "",
+      page: "Dashboard",
       cookie: "",
       exercise :[],
       workout: [],
@@ -132,15 +132,14 @@ class App extends React.Component {
       console.log(this.state.historyMissed)
     }
 
-    
-
     let content;
+
     if(this.state.page === "Addworkout"){
       content = (
       <div class="container">
       <div class="row">
           <div class="col-sm">
-            <h2>Search for BodyPart</h2>
+            <h2>BodyPart</h2>
             <BodyPart exerciseCallback = {myCallback} />
         </div>
       <div class="col-sm">
@@ -161,7 +160,7 @@ class App extends React.Component {
       </div>
       )
     } else if (this.state.page === "Dashboard"){
-      if(this.state.workoutList === []){
+      if(this.state.workoutList.length === 0){
       content = (
         <div>
           <div class="jumbotron">
@@ -184,14 +183,10 @@ class App extends React.Component {
 
     return (
       <div>
-        <Drawertable pageFind = {pageFinder}>
+        <Drawertable pageFind = {pageFinder} cookiesCheck = {this.state.cookie}>
         {content}
       </Drawertable>
     </div>
-        
-        // <div>
-        //   <Nav cookiesCheck = {this.state.cookie}/>
-        // </div>
     );
   }
 }

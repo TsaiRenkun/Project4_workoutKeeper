@@ -25,7 +25,7 @@ module.exports = (db) => {
         let user_id = result.rows[0].id
         response.cookie('loggedIn', cookie);
         response.cookie('userId', user_id);
-        response.redirect('/');
+        response.redirect('/login');
     })
   }
 

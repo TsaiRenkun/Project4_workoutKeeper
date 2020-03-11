@@ -21,6 +21,8 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import HomeIcon from '@material-ui/icons/Home';
 import HistoryIcon from '@material-ui/icons/History';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const drawerWidth = 240;
 
@@ -98,6 +100,32 @@ export default function PersistentDrawerLeft(props) {
     props.pageFind(page)
   };
 
+
+
+  const cookie = props.cookiesCheck;
+  console.log(props.cookiesCheck)
+  const checkCookie = (index) => {
+      if(index){
+       return( 
+        <a href ="/logout">
+        <ListItem button key='logout'>
+        <ListItemIcon>< ExitToAppIcon /></ListItemIcon>
+        <ListItemText primary='logout' />
+      </ListItem>
+      </a>
+       )
+      } else {
+        return( 
+          <a href ="/login">
+          <ListItem button key='login'>
+          <ListItemIcon><AccountCircleIcon/></ListItemIcon>
+          <ListItemText key='login'/>
+        </ListItem>
+        </a> 
+        )
+      }
+    }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -157,12 +185,7 @@ export default function PersistentDrawerLeft(props) {
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          {checkCookie(cookie)}
         </List>
       </Drawer>
       <main
