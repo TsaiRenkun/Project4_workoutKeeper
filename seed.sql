@@ -93,15 +93,15 @@
 -- VALUES
 -- ('Incline Chest','2');
 
--- -- -- ARMS exercise --------------------
+-- -- ARMS exercise --------------------
 
 
 
--- -- -- 3
+-- -- 3
 
 
 
--- -- ---------------------------------------
+-- ---------------------------------------
 
 -- INSERT INTO exercise
 -- (name, bodypart_id)
@@ -201,4 +201,210 @@
 -- INSERT into exercise
 -- (name, bodypart_id)
 -- VALUES
--- ('DeadLift', '4')
+-- ('DeadLift', '4');
+
+-- INSERT INTO exercise
+-- (name, bodypart_id)
+-- VALUES
+-- ('Barbell Deadlifts','1');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at)
+VALUES
+('1', null , '2020-03-12 00:00:00' , '2020-03-11 00:00:00');
+
+INSERT INTO worko
+(user_id,completed,created_at,expire_at)
+VALUES
+('1', null , '2020-03-12 00:00:00' , '2020-03-11 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at)
+VALUES
+('1', null , '2020-03-12 00:00:00' , '2020-03-11 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at)
+VALUES
+('1', null , '2020-03-12 00:00:00' , '2020-03-11 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at)
+VALUES
+('1', null , '2020-03-12 00:00:00' , '2020-03-11 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at)
+VALUES
+('1', null , '2020-03-12 00:00:00' , '2020-03-11 00:00:00');
+
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-02-12 00:00:00' , '2020-02-18 00:00:00', '2020-02-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-02-12 00:00:00' , '2020-02-18 00:00:00', '2020-02-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-02-12 00:00:00' , '2020-02-18 00:00:00', '2020-02-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-02-12 00:00:00' , '2020-02-18 00:00:00', '2020-02-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-02-12 00:00:00' , '2020-02-18 00:00:00', '2020-02-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-02-12 00:00:00' , '2020-02-18 00:00:00', '2020-02-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-02-12 00:00:00' , '2020-02-18 00:00:00', '2020-02-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-02-12 00:00:00' , '2020-02-18 00:00:00', '2020-02-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-02-12 00:00:00' , '2020-02-18 00:00:00', '2020-02-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-02-12 00:00:00' , '2020-02-18 00:00:00', '2020-02-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-02-12 00:00:00' , '2020-02-18 00:00:00', '2020-02-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-05-12 00:00:00' , '2020-05-18 00:00:00', '2020-05-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-05-12 00:00:00' , '2020-05-18 00:00:00', '2020-05-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-05-12 00:00:00' , '2020-05-18 00:00:00', '2020-05-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-05-12 00:00:00' , '2020-05-18 00:00:00', '2020-05-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-04-12 00:00:00' , '2020-04-18 00:00:00', '2020-04-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-04-12 00:00:00' , '2020-04-18 00:00:00', '2020-04-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-04-12 00:00:00' , '2020-04-18 00:00:00', '2020-04-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-04-12 00:00:00' , '2020-04-18 00:00:00', '2020-04-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-04-12 00:00:00' , '2020-04-18 00:00:00', '2020-04-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-04-12 00:00:00' , '2020-04-18 00:00:00', '2020-04-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-04-12 00:00:00' , '2020-04-18 00:00:00', '2020-04-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-04-12 00:00:00' , '2020-04-18 00:00:00', '2020-04-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-04-12 00:00:00' , '2020-04-18 00:00:00', '2020-04-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-06-12 00:00:00' , '2020-06-18 00:00:00', '2020-06-12 00:00:00');
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-06-12 00:00:00' , '2020-06-18 00:00:00', '2020-06-12 00:00:00');
+
+
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-07-12 00:00:00' , '2020-07-18 00:00:00', '2020-07-12 00:00:00');
+
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-07-12 00:00:00' , '2020-07-18 00:00:00', '2020-07-12 00:00:00');
+
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-07-12 00:00:00' , '2020-07-18 00:00:00', '2020-07-12 00:00:00');
+
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-07-12 00:00:00' , '2020-07-18 00:00:00', '2020-07-12 00:00:00');
+
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-07-12 00:00:00' , '2020-07-18 00:00:00', '2020-07-12 00:00:00');
+
+
+INSERT INTO workout
+(user_id,completed,created_at,expire_at,updated_at)
+VALUES
+('1', 'true' , '2020-07-12 00:00:00' , '2020-07-18 00:00:00', '2020-07-12 00:00:00');
+
+
+

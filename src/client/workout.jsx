@@ -7,12 +7,14 @@ import Paper from '@material-ui/core/Paper';
 
 class Workout extends React.Component {
 
-    createWorkout(key,data,clearlist){
+    createWorkout(key,data,clearlist,updatelist){
         console.log(key)
         axios.post('/workout', {
             userId: key
           })
           .then(function (response) {
+
+            updatelist(response.data.rows[0])
               console.log(response.data.rows[0])
               console.log(data)
               
@@ -52,7 +54,7 @@ class Workout extends React.Component {
         return(
         <div>
             {exercises}
-            <button className = "btn btn-primary mt-2"type="Submit"  onClick ={()=>{this.createWorkout(this.props.cookieId.userId, this.props.workList, this.props.clear)}}>Submit</button>
+            <button className = "btn btn-primary mt-2"type="Submit"  onClick ={()=>{this.createWorkout(this.props.cookieId.userId, this.props.workList, this.props.clear, this.props.updatingWorkout)}}>Submit</button>
         </div>
         )
     }

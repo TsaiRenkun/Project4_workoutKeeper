@@ -114,8 +114,6 @@ module.exports = (db) => {
       userId: request.params.id,
     }
 
-    console.log("INSDIE SHOWING WORKOUT LIST AND STUFF SO FK YOU UNDERSTNS S", data)
-
     db.key.getWorkoutList(data, (err,results)=>{
       response.send(results)
     })

@@ -66,8 +66,6 @@ class App extends React.Component {
       axios
         .get(url)
         .then(response => {
-          console.log("WE ARE FKING IN thE WORK OUT LIST MOSTHER FKER");
-            console.log(response)
           const data = response.data;
           console.log(data, "GETTING ALL WORKOUT")
           this.setState({ workoutList: data.rows });
@@ -114,6 +112,8 @@ class App extends React.Component {
 
     const addWorkout = (workout) => {
       this.setState({workoutList: [workout, ...this.state.workoutList]})
+      console.log("HELLLOOOOOO WHY YOU BROKE")
+      console.log(this.state.workoutList.length)
     }
 
     const pageFinder = (pageName) => {
@@ -149,7 +149,7 @@ class App extends React.Component {
         </div>
       <div class="col-sm">
           <h2>Workout</h2>
-          <Workout workList ={this.state.workout} removeExercise = {removeFromWorkout} cookieId = {this.state.cookie} clear = {clearWorkout}/>
+          <Workout workList ={this.state.workout} removeExercise = {removeFromWorkout} cookieId = {this.state.cookie} clear = {clearWorkout} updatingWorkout = {addWorkout}/>
         </div>
       </div>
     </div>

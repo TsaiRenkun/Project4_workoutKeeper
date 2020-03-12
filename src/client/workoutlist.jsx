@@ -12,8 +12,16 @@ class Workoutlist extends React.Component {
     console.log("constructing");
     super();
     this.state = {
-      exercises: []
+      exercises: [],
+      workoutList: []
     };
+  }
+  componentDidMount(){
+    this.updateWorkoutList()
+  }
+
+  updateWorkoutList(){
+    this.setState({workoutList : this.props.workoutList})
   }
 
   getSingleWorkout(user,workout){
@@ -74,7 +82,7 @@ class Workoutlist extends React.Component {
         )
     })
 
-    let workoutItems = this.props.workoutList.map((workout,index) => {
+    let workoutItems = this.state.workoutList.map((workout,index) => {
     if(workout.completed === null && moment(Date.now()).isBefore(moment(workout.expire_at))){
         let targeturl = "exampleModalCenter" + workout.id;
         let targetting = "#exampleModalCenter" + workout.id;
