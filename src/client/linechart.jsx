@@ -32,7 +32,7 @@ class Linechart extends React.Component {
           
             datasets: [
               {
-                label: 'My First dataset',
+                label: 'My Workouts',
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor: 'rgba(75,192,192,0.4)',
