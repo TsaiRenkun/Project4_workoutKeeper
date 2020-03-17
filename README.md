@@ -1,60 +1,39 @@
-React boilerplate with ES2015, Express.js, and Webpack
 
-## Technologies
+# Workout Keeper
+	A One-page application using React to help keep track and to bulid a habit of working out.
 
-- React (v16)
-- Express.js (v4) as production and development server
-- Webpack 4 (production and development configurations)
-- SCSS support (+ sanitize.css included)
-- ES2015+
+## Technologies 
+	Javascript
+	Html
+	Css
+	Node.js
+	Express
+	React
+	AJAX
+	Bootstrap
+	Postgres
 
-## Features
-- preconfigured eslint and Prettier code formatter
-- React Hot Loader
-- Linux/MacOS/Windows
+## Approach
+		Plan,Trial,Incorporate
+		Planning stage took about 2 days. Coming up with an idea, wire framing, and creating Tables for the data.
+		Data management was the most difficult part of this project. As you will need to see what is necessary and what wasn't.
 
-## Usage
+		Trial 
+		Taking data and functions testing them within the local host to ensure it works well with each other. Keeping track which controller is talking to which model. This is an extremely important part for me during my project.
 
-### Make sure you have nodemon installed globally
-```
-npm install -g nodemon
-```
+		Incorporate
+		When i completed each trial or milestone i had to merge with things that are already in my code. This took a long while as there will be bugs alone the way
 
-### Installation
-```bash
-git clone https://github.com/wdi-sg/react-express-webpack.git
-cd react-express-webpack
-npm install
+## Unsolved Problems
+		There are some parts in my app that i still wish to change and improve on.
+		1. To input more data into my Database to allow better insight on workouts.
+		2. To make the page look more professional.
 
+## ERD
+![](Images/Screenshot 2020-03-17 at 4.48.44 PM.png)
 
-# remove boilerplate git references
-rm ./.git
-```
-
-### Scripts
-```bash
-# run development mode
-npm run dev
-
-# run production mode
-npm run build
-npm start
-
-# run prettier
-npm run prettier
-
-# run lint
-npm run lint
-
-# run on a different port
-HTTP_PORT=3001 npm run dev
-```
-
-### Deploy
-
-Some operating systems do not copy the server files to the build directory.
-
-See the documentation here: [https://github.com/calvinmetcalf/copyfiles/blob/master/readme.md](https://github.com/calvinmetcalf/copyfiles/blob/master/readme.md)
+## Problem Statement
+	The problem was that planning a workout every week is abit tiring. So i wanted to develop an app to create workouts for people.
 
 ## License
 MIT License. Free use and change.
