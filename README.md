@@ -15,14 +15,14 @@
 
 ## Approach
 		Plan,Trial,Incorporate
-		Planning stage took about 2 days. Coming up with an idea, wire framing, and creating Tables for the data.
-		Data management was the most difficult part of this project. As you will need to see what is necessary and what wasn't.
+		Planning stage took 1 day. Coming up with an idea, and creating Tables for the data.
+		Data management was the most difficult part of this project. As you will need to see what is necessary and what wasn't. The outcome was to learn more about react and to push myseld to create a one-page application
 
 		Trial 
-		Taking data and functions testing them within the local host to ensure it works well with each other. Keeping track which controller is talking to which model. This is an extremely important part for me during my project.
+		The things I learnt along the way was very interesting, being able to see the Ajax request and full power of manipulating the data and changing what was on the screen was at first difficult to understand.
 
 		Incorporate
-		When i completed each trial or milestone i had to merge with things that are already in my code. This took a long while as there will be bugs alone the way
+		While I slowly understanding how to use MVC with React. It was very interesting because i felt that understanding the flow of the files was very important.
 
 ## Unsolved Problems
 		There are some parts in my app that i still wish to change and improve on.
@@ -30,7 +30,7 @@
 		2. To make the page look more professional.
 
 ## ERD
-![](Images/Screenshot 2020-03-17 at 4.48.44 PM.png)
+![](https://github.com/TsaiRenkun/Project4_workoutKeeper/blob/master/Images/Screenshot%202020-03-17%20at%204.48.44%20PM.png)
 
 ## Problem Statement
 	The problem was that planning a workout every week is abit tiring. So i wanted to develop an app to create workouts for people.
